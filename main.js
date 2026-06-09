@@ -1,11 +1,10 @@
 const init = () => {
-  // 1. SETUP AUDIO DI AWAL (Menggunakan new URL agar aman di semua browser HP)
+  // 1. SETUP AUDIO DI AWAL (Pakai relative path langsung, spasi diganti %20 agar aman di HP)
   let bgAudio;
   try {
-    const bgAudioUrl = new URL('public/antent - hope to see you again.mp3', window.location.href).href;
-    bgAudio = new Audio(bgAudioUrl);
+    bgAudio = new Audio('./public/antent%20-%20hope%20to%20see%20you%20again.mp3');
     bgAudio.loop = true;
-    bgAudio.volume = 0.05; // Sudah diset pas 5% ya ney!
+    bgAudio.volume = 0.05; // Setel ke 5% lagi ya ney biar ga kekencangan
     bgAudio.muted = false;
   } catch (err) {
     console.warn('Audio init failed', err);
@@ -251,11 +250,10 @@ const init = () => {
   setInterval(updateCounter, 1000);
   updateCounter();
 
-  // 7. Extra Audio Button Logic (Menggunakan new URL)
+  // 7. Extra Audio Button Logic (Pakai relative path langsung)
   const extraPlayBtn = document.getElementById('extra-play-btn');
   if (extraPlayBtn) {
-    const extraAudioUrl = new URL('public/audio.aac', window.location.href).href;
-    const extraAudio = new Audio(extraAudioUrl);
+    const extraAudio = new Audio('./public/audio.aac');
     extraAudio.volume = 0.45; 
     let isExtraPlaying = false;
     
