@@ -129,7 +129,7 @@ body.locked {
   width: 100vw;
   height: 100vh;
   z-index: -1;
-  background-image: url('./ind.png');
+  background-image: url('/ind.png');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
