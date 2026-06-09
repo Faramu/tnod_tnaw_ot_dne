@@ -1,6 +1,16 @@
-import './style.css'
-
 const init = () => {
+  // 1. SETUP AUDIO DI AWAL (Tapi jangan di-play dulu)
+  let bgAudio;
+  try {
+    const audioSrc = encodeURI('./antent - hope to see you again.mp3');
+    bgAudio = new Audio(audioSrc);
+    bgAudio.loop = true;
+    bgAudio.volume = 0.05; // Volume sudah diset 5% sesuai permintaanmu
+    bgAudio.muted = false;
+  } catch (err) {
+    console.warn('Audio init failed', err);
+  }
+
   // Scroll Down Button
   const scrollBtn = document.getElementById('scroll-down');
   const messageSection = document.getElementById('message-section');
@@ -9,7 +19,7 @@ const init = () => {
     messageSection.scrollIntoView({ behavior: 'smooth' });
   });
 
-  // Login Logic
+  // 2. TRIGGER AUDIO SAAT USER BERHASIL LOGIN (INTERAKSI)
   const loginOverlay = document.getElementById('login-overlay');
   const pwdInput = document.getElementById('password-input');
   const loginBtn = document.getElementById('login-btn');
@@ -19,6 +29,11 @@ const init = () => {
     if (pwdInput.value.trim() === '1234') {
       loginOverlay.classList.add('hidden');
       document.body.classList.remove('locked');
+      
+      // MULAI MUSIKNYA DI SINI SAAT LOGIN BERHASIL!
+      if (bgAudio) {
+        bgAudio.play().catch(e => console.warn('Background audio blocked:', e));
+      }
     } else {
       loginErr.classList.remove('hidden');
       setTimeout(() => loginErr.classList.add('hidden'), 3000);
@@ -63,7 +78,6 @@ const init = () => {
 
   const galleryItems = document.querySelectorAll('.gallery-item');
   galleryItems.forEach((item, index) => {
-    // Add staggered delay based on index for a cascading effect
     item.style.transitionDelay = `${(index % 4) * 0.15}s`;
     observer.observe(item);
   });
@@ -96,7 +110,6 @@ const init = () => {
       ctx.fillStyle = '#4a151e';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       
-      // Add texture/noise (bercak)
       ctx.fillStyle = 'rgba(255, 255, 255, 0.05)';
       for (let i = 0; i < 2500; i++) {
         ctx.fillRect(Math.random() * canvas.width, Math.random() * canvas.height, 1.5, 1.5);
@@ -241,7 +254,6 @@ const init = () => {
   // 6. Extra Audio Button Logic
   const extraPlayBtn = document.getElementById('extra-play-btn');
   if (extraPlayBtn) {
-    // You can change 'memory.mp3' to your actual file name when you have it in the public folder
     const extraAudio = new Audio('./audio.aac');
     extraAudio.volume = 0.3; 
     let isExtraPlaying = false;
@@ -264,46 +276,31 @@ const init = () => {
     });
   }
 
-  // Background audio: autoplay with sound and loop
-  try {
-    const audioSrc = encodeURI('./antent - hope to see you again.mp3');
-    const bgAudio = new Audio(audioSrc);
-    bgAudio.loop = true; // auto replay when finished
-    bgAudio.volume = 1.0;
-    bgAudio.muted = false;
-    bgAudio.play().catch(() => {
-      // play may be blocked by browser autoplay rules; user can unmute or interact
-    });
+  // 7. Mute toggle button logic
+  const muteBtn = document.getElementById('mute-toggle');
+  if (muteBtn && bgAudio) {
+    const icon = muteBtn.querySelector('i');
+    const updateIcon = () => {
+      if (bgAudio.muted) {
+        icon.className = 'ri-volume-mute-line';
+        muteBtn.setAttribute('aria-pressed', 'true');
+        muteBtn.setAttribute('aria-label', 'Audio muted');
+      } else {
+        icon.className = 'ri-volume-up-line';
+        muteBtn.setAttribute('aria-pressed', 'false');
+        muteBtn.setAttribute('aria-label', 'Audio playing');
+      }
+    };
 
-    // Mute toggle button
-    const muteBtn = document.getElementById('mute-toggle');
-    if (muteBtn) {
-      const icon = muteBtn.querySelector('i');
-      const updateIcon = () => {
-        if (bgAudio.muted) {
-          icon.className = 'ri-volume-mute-line';
-          muteBtn.setAttribute('aria-pressed', 'true');
-          muteBtn.setAttribute('aria-label', 'Audio muted');
-        } else {
-          icon.className = 'ri-volume-up-line';
-          muteBtn.setAttribute('aria-pressed', 'false');
-          muteBtn.setAttribute('aria-label', 'Audio playing');
-        }
-      };
+    updateIcon();
 
-      // Initialize icon state
+    muteBtn.addEventListener('click', () => {
+      bgAudio.muted = !bgAudio.muted;
+      if (!bgAudio.muted) {
+        bgAudio.play().catch(() => {});
+      }
       updateIcon();
-
-      muteBtn.addEventListener('click', () => {
-        bgAudio.muted = !bgAudio.muted;
-        if (!bgAudio.muted) {
-          bgAudio.play().catch(() => {});
-        }
-        updateIcon();
-      });
-    }
-  } catch (err) {
-    console.warn('Audio init failed', err);
+    });
   }
 };
 
