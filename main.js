@@ -255,7 +255,7 @@ const init = () => {
   const extraPlayBtn = document.getElementById('extra-play-btn');
   if (extraPlayBtn) {
     const extraAudio = new Audio('./public/audio.aac');
-    extraAudio.volume = 0.3; 
+    extraAudio.volume = 0.1; 
     let isExtraPlaying = false;
     
     extraPlayBtn.addEventListener('click', () => {
