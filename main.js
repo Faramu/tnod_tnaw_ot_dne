@@ -2,7 +2,7 @@ const init = () => {
   // 1. SETUP AUDIO DI AWAL (Tapi jangan di-play dulu)
   let bgAudio;
   try {
-    const audioSrc = encodeURI('./antent - hope to see you again.mp3');
+    const audioSrc = encodeURI('./public/antent - hope to see you again.mp3');
     bgAudio = new Audio(audioSrc);
     bgAudio.loop = true;
     bgAudio.volume = 0.05; // Volume sudah diset 5% sesuai permintaanmu
@@ -254,7 +254,7 @@ const init = () => {
   // 6. Extra Audio Button Logic
   const extraPlayBtn = document.getElementById('extra-play-btn');
   if (extraPlayBtn) {
-    const extraAudio = new Audio('./audio.aac');
+    const extraAudio = new Audio('./public/audio.aac');
     extraAudio.volume = 0.3; 
     let isExtraPlaying = false;
     
