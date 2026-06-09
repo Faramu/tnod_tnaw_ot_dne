@@ -4,7 +4,7 @@ const init = () => {
   try {
     bgAudio = new Audio('./public/antent%20-%20hope%20to%20see%20you%20again.mp3');
     bgAudio.loop = true;
-    bgAudio.volume = 0.05; // Setel ke 5% lagi ya ney biar ga kekencangan
+    bgAudio.volume = 1.0;
     bgAudio.muted = false;
   } catch (err) {
     console.warn('Audio init failed', err);
