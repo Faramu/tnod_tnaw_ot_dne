@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Happy Birthday</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="stylesheet" href="./style.css?v=4">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  </head>
+  <body class="locked">
+    <!-- Login Overlay -->
+    <div id="login-overlay" class="login-overlay">
+      <div class="login-box">
+        <h2 class="login-title">Private Gallery</h2>
+        <p class="login-subtitle">Please enter the password to continue</p>
+        <div class="input-group">
+          <input type="password" id="password-input" placeholder="Password">
+          <button id="login-btn" class="btn"><i class="ri-arrow-right-line"></i></button>
+        </div>
+        <p id="login-error" class="login-error hidden">Incorrect password.</p>
+      </div>
+    </div>
+    <button id="mute-toggle" class="music-control" aria-pressed="false" aria-label="Audio playing">
+      <i class="ri-volume-up-line"></i>
+    </button>
+    <div class="background-container">
+      <div class="bg-overlay"></div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+      <div class="hero-content">
+        <h1 class="title">HAPPY BIRTHDAY</h1>
+        <p class="subtitle fade-in">A celebration of you</p>
+        <div class="hero-actions">
+          <button class="btn confetti-btn" id="confetti-btn">
+            <i class="ri-sparkling-fill"></i> Tap Me
+          </button>
+          <button class="btn scroll-down" id="scroll-down">
+            <i class="ri-arrow-down-line"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Message Reveal Section -->
+    <section class="message-section" id="message-section">
+      <div class="content-wrapper">
+        <div class="envelope" id="envelope">
+          <i class="ri-mail-line"></i>
+          <p>Tap to open</p>
+        </div>
+        <div class="message-content hidden" id="message-content">
+          <h2>To Ms. Z</h2>
+          <p>Selamat ulang tahun yang ke-21! Di usia yang baru ini, aku berharap harimu dipenuhi dengan kebahagiaan, dan tahun-tahun berikutnya membawa semua hal baik yang kamu impikan.</p>
+          <p>Memasuki fase dewasa ini, semoga kamu selalu tumbuh menjadi pribadi yang kuat dalam menghadapi setiap tantangan, tetap ceria, serta selalu dipenuhi energi positif dan dikelilingi oleh orang-orang baik.</p>
+          <p>With love,</p>
+          <p class="signature">F</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Photo Gallery Section -->
+    <section class="gallery-section" id="gallery-section">
+      <h2 class="section-title">May you always be</h2>
+      <div class="gallery">
+        <div class="gallery-item">
+          <img src="/cheerful.png" alt="Cheerful Memory" style="width:100%; height:100%; object-fit:cover;">
+          <canvas class="scratch-pad"></canvas>
+        </div>
+        <div class="gallery-item">
+          <img src="/strong.png" alt="Strong Memory" style="width:100%; height:100%; object-fit:cover;">
+          <canvas class="scratch-pad"></canvas>
+        </div>
+        <div class="gallery-item">
+          <img src="/persistent.png" alt="Persistent Memory" style="width:100%; height:100%; object-fit:cover;">
+          <canvas class="scratch-pad"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- Audio Wishes Section -->
+    <section class="wishes-audio-section" id="wishes-audio-section">
+      <div class="content-wrapper">
+        <h2 class="section-title">Wishes From My Friends</h2>
+        <div class="wishes-content">
+          <p>Some of my closest friends also wanted to share their heartfelt wishes for you on this special day. I've been collecting their recordings over the past few days.</p>
+          <div class="gallery-actions">
+            <button class="btn extra-play-btn" id="extra-play-btn">
+              <i class="ri-play-circle-line"></i> Play Audio
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Notable Moments Timeline Section -->
+    <section class="timeline-section" id="timeline-section">
+      <h2 class="section-title">Notable Moments</h2>
+      <div class="timeline">
+        <div class="timeline-item left">
+          <div class="timeline-content">
+            <span class="timeline-date">Februari 2019</span>
+            <p>Pertama kali kenal</p>
+          </div>
+        </div>
+        <div class="timeline-item right">
+          <div class="timeline-content">
+            <span class="timeline-date">Juli 2019</span>
+            <p>Z pesantren Era</p>
+          </div>
+        </div>
+        <div class="timeline-item left">
+          <div class="timeline-content">
+            <span class="timeline-date">September 2022</span>
+            <p>Chat untuk pertama kalinya setelah sekian lama lost contact</p>
+          </div>
+        </div>
+        <div class="timeline-item right">
+          <div class="timeline-content">
+            <span class="timeline-date">Desember 2022</span>
+            <p>Sama sama NT</p>
+          </div>
+        </div>
+        <div class="timeline-item left">
+          <div class="timeline-content">
+            <span class="timeline-date">Oktober 2024</span>
+            <p>Chat setelah lost contact part 2</p>
+          </div>
+        </div>
+        <div class="timeline-item right">
+          <div class="timeline-content">
+            <span class="timeline-date">April 2025</span>
+            <p>Momen plot twist</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Time Together Counter Section -->
+    <section class="counter-section" id="counter-section">
+      <div class="content-wrapper">
+        <h2 class="section-title">Time We've Known Each Other</h2>
+        <div class="counter-grid" id="time-counter">
+          <div class="counter-box"><span id="c-years">0</span><small>Years</small></div>
+          <div class="counter-box"><span id="c-months">0</span><small>Months</small></div>
+          <div class="counter-box"><span id="c-days">0</span><small>Days</small></div>
+          <div class="counter-box"><span id="c-hours">0</span><small>Hours</small></div>
+          <div class="counter-box"><span id="c-mins">0</span><small>Minutes</small></div>
+          <div class="counter-box"><span id="c-secs">0</span><small>Seconds</small></div>
+        </div>
+        
+        <div class="single-timers" id="single-timers">
+          <p>Or:</p>
+          <div class="single-timer-list">
+            <div class="st-item"><span id="st-days">0</span> Days</div>
+            <div class="st-item"><span id="st-hours">0</span> Hours</div>
+            <div class="st-item"><span id="st-mins">0</span> Minutes</div>
+            <div class="st-item"><span id="st-secs">0</span> Seconds</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Apology Section -->
+    <section class="apology-section" id="apology-section">
+      <div class="content-wrapper">
+        <div class="apology-content">
+          <p>I want to take a moment to sincerely apologize for any mistakes I may have made throughout the time we've known each other. Please know that I have never, even for a second, considered you a bother or a burden.</p>
+          <p>I am truly sorry for that time I left my phone behind and couldn't let you know, causing you to worry. I know it might have made you feel as though I wasn't acknowledging you or your presence, especially when you so warmly share your stories and random thoughts with me. I deeply appreciate those moments, and I never meant to make you feel unheard.</p>
+          <p>Lastly, my wish for you is this: whenever you need anything or simply want someone to talk to, please don't hesitate to reach out to me.</p>
+        </div>
+      </div>
+    </section>
+
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>
