@@ -88,6 +88,8 @@ body.locked {
   font-size: 1rem;
   outline: none;
   flex: 1;
+  min-width: 0; 
+  width: 100%;
 }
 
 #password-input:focus {
@@ -714,6 +716,11 @@ body.locked {
 }
 
 @media (max-width: 768px) {
+
+  .login-box {
+    padding: 2rem 1.5rem;
+    width: 95%;
+  }
   .message-content {
     padding: 2.5rem;
   }

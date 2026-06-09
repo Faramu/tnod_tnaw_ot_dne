@@ -1,6 +1,6 @@
 import './style.css'
 
-document.addEventListener('DOMContentLoaded', () => {
+const init = () => {
   // Scroll Down Button
   const scrollBtn = document.getElementById('scroll-down');
   const messageSection = document.getElementById('message-section');
@@ -305,4 +305,10 @@ document.addEventListener('DOMContentLoaded', () => {
   } catch (err) {
     console.warn('Audio init failed', err);
   }
-});
+};
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', init);
+} else {
+  init();
+}
