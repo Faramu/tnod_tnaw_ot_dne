@@ -242,7 +242,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const extraPlayBtn = document.getElementById('extra-play-btn');
   if (extraPlayBtn) {
     // You can change 'memory.mp3' to your actual file name when you have it in the public folder
-    const extraAudio = new Audio('/audio.aac');
+    const extraAudio = new Audio('./audio.aac');
     extraAudio.volume = 0.3; 
     let isExtraPlaying = false;
     
@@ -266,7 +266,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Background audio: autoplay with sound and loop
   try {
-    const audioSrc = encodeURI('/antent - hope to see you again.mp3');
+    const audioSrc = encodeURI('./antent - hope to see you again.mp3');
     const bgAudio = new Audio(audioSrc);
     bgAudio.loop = true; // auto replay when finished
     bgAudio.volume = 1.0;
