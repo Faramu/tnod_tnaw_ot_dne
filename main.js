@@ -5,7 +5,7 @@ const init = () => {
     const audioSrc = encodeURI('./public/antent - hope to see you again.mp3');
     bgAudio = new Audio(audioSrc);
     bgAudio.loop = true;
-    bgAudio.volume = 0.05; // Volume sudah diset 5% sesuai permintaanmu
+    bgAudio.volume = 1.0; // Volume sudah diset 5% sesuai permintaanmu
     bgAudio.muted = false;
   } catch (err) {
     console.warn('Audio init failed', err);
