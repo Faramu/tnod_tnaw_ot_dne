@@ -1,11 +1,11 @@
 const init = () => {
-  // 1. SETUP AUDIO DI AWAL (Tapi jangan di-play dulu)
+  // 1. SETUP AUDIO DI AWAL (Menggunakan new URL agar aman di semua browser HP)
   let bgAudio;
   try {
-    const audioSrc = encodeURI('./public/antent - hope to see you again.mp3');
-    bgAudio = new Audio(audioSrc);
+    const bgAudioUrl = new URL('public/antent - hope to see you again.mp3', window.location.href).href;
+    bgAudio = new Audio(bgAudioUrl);
     bgAudio.loop = true;
-    bgAudio.volume = 1.0; // Volume sudah diset 5% sesuai permintaanmu
+    bgAudio.volume = 0.05; // Sudah diset pas 5% ya ney!
     bgAudio.muted = false;
   } catch (err) {
     console.warn('Audio init failed', err);
@@ -47,7 +47,7 @@ const init = () => {
     });
   }
 
-  // 2. Message Reveal
+  // 3. Message Reveal
   const envelope = document.getElementById('envelope');
   const messageContent = document.getElementById('message-content');
 
@@ -57,11 +57,11 @@ const init = () => {
       setTimeout(() => {
         envelope.style.display = 'none';
         messageContent.classList.remove('hidden');
-      }, 1500); // Wait for envelope to fade out (slower)
+      }, 1500); 
     });
   }
 
-  // 3. Scroll Animations for Gallery
+  // 4. Scroll Animations for Gallery
   const observerOptions = {
     threshold: 0.1,
     rootMargin: "0px 0px -50px 0px"
@@ -200,7 +200,7 @@ const init = () => {
     window.addEventListener('touchend', handleEnd);
   });
 
-  // 4. Confetti Button Logic
+  // 5. Confetti Button Logic
   const confettiBtn = document.getElementById('confetti-btn');
   if (confettiBtn) {
     confettiBtn.addEventListener('click', () => {
@@ -215,7 +215,7 @@ const init = () => {
     });
   }
 
-  // 5. Time Together Counter Logic
+  // 6. Time Together Counter Logic
   const counterStartDate = new Date('2019-02-13T22:00:00+07:00').getTime();
   const updateCounter = () => {
     const now = new Date().getTime();
@@ -251,11 +251,12 @@ const init = () => {
   setInterval(updateCounter, 1000);
   updateCounter();
 
-  // 6. Extra Audio Button Logic
+  // 7. Extra Audio Button Logic (Menggunakan new URL)
   const extraPlayBtn = document.getElementById('extra-play-btn');
   if (extraPlayBtn) {
-    const extraAudio = new Audio('./public/audio.aac');
-    extraAudio.volume = 0.1; 
+    const extraAudioUrl = new URL('public/audio.aac', window.location.href).href;
+    const extraAudio = new Audio(extraAudioUrl);
+    extraAudio.volume = 0.3; 
     let isExtraPlaying = false;
     
     extraPlayBtn.addEventListener('click', () => {
@@ -276,7 +277,7 @@ const init = () => {
     });
   }
 
-  // 7. Mute toggle button logic
+  // 8. Mute toggle button logic
   const muteBtn = document.getElementById('mute-toggle');
   if (muteBtn && bgAudio) {
     const icon = muteBtn.querySelector('i');
